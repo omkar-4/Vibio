@@ -1,3 +1,86 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Variable.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Mafinest";
+  src: url("/fonts/MafinestFree-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Zentry";
+  src: url("/fonts/ZENTRY-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DancingScript";
+  src: url("/fonts/DancingScript-Variable.ttf") format("truetype");
+}
+
+::selection {
+  background-color: #5a8c70;
+}
+
+body {
+  font-family: "Satoshi", sans-serif;
+  background-color: #101010;
+  color: #f5f5f5;
+}
+
+.mafinest {
+  font-family: "Mafinest", serif;
+}
+
+.zentry {
+  font-family: "Zentry", serif;
+}
+
+.dancing-script {
+  font-family: "DancingScript", cursive;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px #f5f5f5;
+}
+
+/* Custom scrollbar styles */
+@supports (scrollbar-width: thin) {
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #333;
+  }
+}
+
+@supports selector(::-webkit-scrollbar) {
+  /* WebKit browsers */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #333;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid #333;
+  }
+}
+
+@supports not (scrollbar-width: thin) {
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}

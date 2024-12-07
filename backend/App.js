@@ -1,27 +1,46 @@
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
-const authRoutes = require("./routes/Auth");
+const bodyParser = require("body-parser");
+const connectDB = require("./config/db");
 
+const authRoutes = require("./routes/AuthRoutes");
+const resourcesRoutes = require("./routes/Resources");
+const postRoutes = require("./routes/PostRoutes");
+const profileRoutes = require("./routes/ProfileRoutes");
+
+require("dotenv").config();
+
+connectDB();
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [process.env.CLIENT_URL, process.env.DEV_URL];
+
+// Allow CORS for specific origins
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
+
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose
-  .connect("mongodb://localhost:27017/vibio")
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
-
+// Routes
 app.use("/api", authRoutes);
+app.use("/api/resources", resourcesRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/profile", profileRoutes);
+// app.use("/api/posts", postRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
-});
-
-app.get("/getData", (req, res) => {
-  res.send(`some data, lorem ipsum dolor sit amet`);
 });
 
 const PORT = process.env.PORT || 5000;

@@ -1,22 +1,18 @@
 import React, { useContext } from "react";
-import { Navigate, Route } from "react-router-dom"; // For redirecting to the login page
-import { AuthContext } from "./AuthContext";
+import { Navigate } from "react-router-dom"; // For redirecting to the login page
+import { AuthContext } from "../context/AuthContext";
 import PropTypes from "prop-types";
 
-const ProtectedRoute = ({ element: Element, ...rest }) => { 
-  const {user} = useContext(AuthContext);
-  console.log("user", user);
-  
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, loading } = useContext(AuthContext);
 
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
+  if (loading) return <p>Loading...</p>;
 
-  return <Element {...rest} />;
+  return isAuthenticated ? children : <Navigate to="/" />;
 };
 
 ProtectedRoute.propTypes = {
-  element: PropTypes.elementType.isRequired,
+  children: PropTypes.elementType.isRequired,
 };
 
 export default ProtectedRoute;

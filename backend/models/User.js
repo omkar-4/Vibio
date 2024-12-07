@@ -16,6 +16,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  commonName: {
+    type: String,
+    default: "",
+  },
+  bio: {
+    type: String,
+    default: "",
+  },
 });
 
 // Hash password before saving
