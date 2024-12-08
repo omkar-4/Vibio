@@ -8,11 +8,13 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) return <p>Loading...</p>;
 
-  return isAuthenticated ? children : <Navigate to="/" />;
+
+
+  return isAuthenticated ? children : <Navigate to="/landing" />;
 };
 
 ProtectedRoute.propTypes = {
-  children: PropTypes.elementType.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default ProtectedRoute;

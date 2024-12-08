@@ -39,11 +39,15 @@ app.use("/api/posts", postRoutes);
 app.use("/api/profile", profileRoutes);
 // app.use("/api/posts", postRoutes);
 
+app.get("/error", (req, res) => {
+  console.log(req.body);
+});
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log("Server is running on port " + PORT);
 });

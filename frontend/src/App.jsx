@@ -8,22 +8,35 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import ResourceDirectory from "./pages/ResourceDirectory";
-import Test from "./pages/Test";
-
+import Navbar from "./components/Navbar";
 const VITE_SERVER_URL = import.meta.env.VITE_SERVER_URL;
+import PropTypes from "prop-types";
+
+function ProtectedLayout({ children }) {
+  return (
+    <>
+      <Navbar /> {/* Navbar is rendered here */}
+      <main>{children}</main> {/* Render the child components */}
+    </>
+  );
+}
+
+ProtectedLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/landing" element={<LandingPage />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
       <Route
-        path="/home"
+        path="/"
         element={
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <Home />
-          // {/* </ProtectedRoute> */}
+          </ProtectedRoute>
         }
       />
       <Route
@@ -35,7 +48,6 @@ function App() {
         }
       />
       <Route path="/resources" element={<ResourceDirectory />} />
-      <Route path="/test" element={<Test />}></Route>
     </Routes>
   );
 }

@@ -21,7 +21,7 @@ function ResourceDirectory() {
   }, []);
 
   return (
-    <main className="px-4 bg-[#101010] h-screen w-screen text-[#f5f5f5] overflow-x-hidden overflow-y-scroll">
+    <main className=" bg-[#101010] h-screen w-screen text-[#f5f5f5]">
       <Navbar />
       <nav className="w-full h-fit py-4 flex justify-between">
         <button className="active:bg-[#B2B3AB] active:text-[#101010] text-[#B2B3AB] border-[1px] border-[#B2B3AB] hover:bg-[#b1b2ac] hover:text-[#101010] h px-4 py-2 uppercase rounded-full box-border">
@@ -38,13 +38,7 @@ function ResourceDirectory() {
               .map((video, index) => (
                 <div key={index} className="flex flex-col gap-1">
                   <div className="aspect-video rounded-md overflow-hidden">
-                    <ReactPlayer
-                      url={video.url}
-                      width="100%"
-                      controls
-                      height="100%"
-                      light
-                    />
+                    <ReactPlayer url={video.url} width="100%" controls height="100%" light />
                   </div>
                   <h4 className="text-zinc-300 px-2">{video.title}</h4>
                 </div>

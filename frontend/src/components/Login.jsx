@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { RiArrowGoBackFill } from "react-icons/ri";
 
-
 const VITE_SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 const Login = () => {
@@ -39,9 +38,10 @@ const Login = () => {
         password,
       });
       login(response.data.token);
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       setError(err.response ? err.response.data.message : "Something went wrong");
+      await axios.post(`${VITE_SERVER_URL}/error`, { message: err.message });
     } finally {
       setLoading(false);
     }

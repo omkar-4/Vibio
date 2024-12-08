@@ -41,8 +41,8 @@ const Profile = () => {
   return (
     <>
       {/* Profile UI */}
-      <main className="px-4 h-screen w-screen text-[#f5f5f5] overflow-x-hidden overflow-y-scroll">
         <Navbar />
+      <main className="px-4 h-full w-full text-[#f5f5f5]">
         <section className="w-full py-4">
           <div className="flex gap-4">
             <div className="w-24 h-24 rounded-full overflow-hidden">
